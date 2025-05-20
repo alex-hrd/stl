@@ -1,0 +1,2 @@
+# Traiter les fichiers STL comme binaires
+*.stl binary
