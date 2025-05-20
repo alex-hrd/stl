@@ -1,3 +1,6 @@
+Thingiverse Link: https://www.thingiverse.com/thing:6946623
+
+# Description
 This is a front intercooler for the Yokomo YD-2, adjustable, with the support fixed to the body mounts.
 
 # How-to
