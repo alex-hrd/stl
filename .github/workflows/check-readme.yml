@@ -1,0 +1,39 @@
+# .github/workflows/check-readme.yml
+name: Vérification des README.md
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  check-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Vérifier la présence de README.md dans chaque dossier
+        run: |
+          missing=0
+          for dir in */; do
+            # Exclure le dossier .github
+            if [ "$dir" != ".github/" ]; then
+              if [ ! -f "${dir}README.md" ]; then
+                echo "❌ Le dossier $dir n'a pas de README.md"
+                missing=1
+              fi
+            fi
+          done
+
+          if [ $missing -eq 1 ]; then
+            echo "Certaines erreurs ont été détectées, le commit est annulé."
+            exit 1
+          else
+            echo "✅ Tous les dossiers ont un README.md"
+          fi
